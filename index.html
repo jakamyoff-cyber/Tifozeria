@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIFOZERIA – IPTV Premium Italia</title>
+  <!-- FontAwesome per icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts Inter (Modern Sans-Serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <!-- CSS Personale -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ticker VOD (FISSO E IN CIMA) -->
+  <div class="ticker-wrap-movie">
+    <div class="ticker-movie">
+      <span class="ticker-movie-item">🎬 ULTIME NOVITÀ FILM HD</span>
+      <span class="ticker-movie-item">🍿 CATALOGO VOD AGGIORNATO</span>
+      <span class="ticker-movie-item">🔥 NETFLIX PREMIUM INCLUSO</span>
+      <span class="ticker-movie-item">📺 AMAZON PRIME VIDEO INCLUSO</span>
+      <span class="ticker-movie-item">⭐ SERIE TV IN ESCLUSIVA</span>
+      <span class="ticker-movie-item">🎬 ULTIME NOVITÀ FILM HD</span>
+      <span class="ticker-movie-item">🍿 CATALOGO VOD AGGIORNATO</span>
+    </div>
+  </div>
+
+
+  <!-- NUOVA BARRA DI NAVIGAZIONE PRINCIPALE -->
+  <nav id="mainNav">
+    <div class="logo-container">
+      <img src="https://placehold.co/50x50/E60000/white?text=TF" style="border-radius:50%; border: 2px solid var(--primary-red);" alt="Logo">
+      <a href="#hero" class="logo-text" style="text-decoration:none;">TIFOZERIA</a>
+    </div>
+    
+    <!-- Link di Navigazione -->
+    <ul class="nav-links">
+      <li><a href="#vantaggi" onclick="closeMobileMenu()">Vantaggi</a></li>
+      <li><a href="#plans" onclick="closeMobileMenu()">Abbonamenti</a></li>
+      <li><a href="#gallery" onclick="closeMobileMenu()">Anteprime</a></li>
+      <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+      <li><a href="#order" class="action-cta" onclick="closeMobileMenu()"><i class="fas fa-shopping-cart"></i> ORDINA SUBITO</a></li>
+    </ul>
+
+    <!-- Hamburger (Mobile Only) -->
+    <div id="menuToggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <header id="hero">
+    <div class="hero-bg" id="heroBackground">
+        <div class="loader"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+      <h1>TUTTO LO SPORT<br> SENZA LIMITI</h1>
+      <h2 style="color:#ddd;">Goditi Serie A, Champions League, Formula 1 e Cinema in 4K.<br>Nessun buffering, massima stabilità.</h2>
+      <div class="hero-cta" style="display:flex; gap:20px;">
+        <a href="#plans" class="btn"><i class="fas fa-play"></i> SCOPRI I PIANI</a>
+        <a href="#order" class="btn outline"><i class="fas fa-shopping-cart"></i> ORDINA COD</a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Advantages (Vantaggi) Section -->
+  <section class="section" id="vantaggi">
+    <h2 class="section-title reveal">PERCHÉ SCEGLIERCI?</h2>
+    <div class="advantages" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+      <div class="adv-box reveal" style="background: var(--page-bg); border-radius: 8px; padding: 30px 20px;">
+        <i class="fas fa-tv adv-icon" style="color:var(--primary-red); font-size: 2rem; margin-bottom: 10px;"></i>
+        <h3>15.000+ Canali</h3>
+        <p>Il palinsesto più completo d'Italia e del mondo, inclusi canali Pay-Per-View.</p>
+      </div>
+      <div class="adv-box reveal" style="background: var(--page-bg); border-radius: 8px; padding: 30px 20px;">
+        <i class="fas fa-microchip adv-icon" style="color:var(--primary-red); font-size: 2rem; margin-bottom: 10px;"></i>
+        <h3>Server Anti-Freeze</h3>
+        <p>Tecnologia proprietaria di bilanciamento del carico per zero buffering durante i big match.</p>
+      </div>
+      <div class="adv-box reveal" style="background: var(--page-bg); border-radius: 8px; padding: 30px 20px;">
+        <i class="fas fa-headset adv-icon" style="color:var(--primary-red); font-size: 2rem; margin-bottom: 10px;"></i>
+        <h3>Supporto 24/7</h3>
+        <p>Assistenza dedicata via WhatsApp e Ticket per configurazioni e rinnovi.</p>
+      </div>
+      <div class="adv-box reveal" style="background: var(--page-bg); border-radius: 8px; padding: 30px 20px;">
+        <i class="fas fa-film adv-icon" style="color:var(--primary-red); font-size: 2rem; margin-bottom: 10px;"></i>
+        <h3>VOD Aggiornato</h3>
+        <p>Migliaia di Film e Serie TV aggiornati quotidianamente con le ultime uscite.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans (Abbonamenti) Section -->
+  <section class="section" id="plans">
+    <h2 class="section-title reveal">I NOSTRI ABBONAMENTI</h2>
+    <div class="plans">
+      
+      <!-- Piano 1: Tifo Starter (12 Mesi) -->
+      <div class="plan-box badge-visible reveal">
+        <div class="plan-badge-top" style="background:var(--dark-grey); color:white;">OFFERTA LIMITATA</div>
+        <div class="plan-header">
+          <h3>Tifo Starter</h3>
+          <span class="plan-price-line">49,99€<span>/12 Mesi</span></span>
+          <span class="plan-description">Il pacchetto ideale per iniziare.</span>
+        </div>
+        <div class="client-price-box">
+          Circa 4,16€ al Mese
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li><i class="fas fa-check"></i> Canali Nazionali in HD</li>
+            <li><i class="fas fa-check"></i> **Canali Internazionali**</li>
+            <li><i class="fas fa-check"></i> **Pacchetto Sport Completo (tutto)**</li>
+            <li><i class="fas fa-check"></i> VOD Essenziale (1000+ Titoli)</li>
+            <li><i class="fas fa-check"></i> Aggiornamenti Server Regolari</li>
+          </ul>
+          <a href="#" class="plan-details-link">Vedi i dettagli dell'offerta <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="plan-footer">
+          <button class="btn-plan light-cta" onclick="selectPlan('Tifo Starter')">Scegli Starter</button>
+        </div>
+      </div>
+
+      <!-- Piano 2: Tifo Power (48 Mesi - Consigliato) -->
+      <div class="plan-box badge-visible reveal" style="border: 2px solid var(--primary-red);">
+        <div class="plan-badge-top" style="background:var(--primary-red); color:white;">OFFERTA TOP</div>
+        <div class="plan-header">
+          <h3>Tifo Power</h3>
+          <span class="plan-price-line">89,99€<span>/48 Mesi</span></span>
+          <span class="plan-description">Massimo risparmio, massima durata.</span>
+        </div>
+        <div class="client-price-box">
+          Circa 1,87€ al Mese
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li><i class="fas fa-check"></i> Canali Premium **4K UHD**</li>
+            <li><i class="fas fa-check"></i> **Canali Internazionali Premium**</li>
+            <li><i class="fas fa-check"></i> **Pacchetto SPORT Completo (tutto)**</li>
+            <li><i class="fas fa-check"></i> **VOD Illimitato e Aggiornato**</li>
+            <li><i class="fas fa-check"></i> Assistenza Prioritaria 24/7</li>
+          </ul>
+          <a href="#" class="plan-details-link">Vedi i dettagli dell'offerta <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="plan-footer">
+          <button class="btn-plan featured-cta" onclick="selectPlan('Tifo Power')">Scegli Power</button>
+        </div>
+      </div>
+
+      <!-- Piano 3: Tifo Tantom (Illimitato) -->
+      <div class="plan-box badge-visible reveal">
+        <div class="plan-badge-top" style="background:var(--dark-text); color:white;">SENZA SCADENZA</div>
+        <div class="plan-header">
+          <h3>Tifo Tantom</h3>
+          <span class="plan-price-line">199,99€<span>/Illimitato</span></span>
+          <span class="plan-description">Una volta e non ci pensi più.</span>
+        </div>
+        <div class="client-price-box">
+          PAGAMENTO UNICO
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li><i class="fas fa-check"></i> Accesso Beta ai Nuovi Server</li>
+            <li><i class="fas fa-check"></i> **Canali Internazionali a Vita**</li>
+            <li><i class="fas fa-check"></i> **Pacchetto Completo + Esclusive**</li>
+            <li><i class="fas fa-check"></i> VOD Illimitato + Back Catalog</li>
+            <li><i class="fas fa-check"></i> **Garanzia Aggiornamenti a Vita**</li>
+          </ul>
+          <a href="#" class="plan-details-link">Vedi i dettagli dell'offerta <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="plan-footer">
+          <button class="btn-plan light-cta" onclick="selectPlan('Tifo Tantom')">Scegli Illimitato</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section" id="gallery">
+    <h2 class="section-title reveal">LA TUA TV, OVUNQUE</h2>
+    <div class="gallery reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; background: var(--page-bg); border-radius: 12px;" id="imageGallery">
+      <div class="gallery-item" style="position: relative; overflow: hidden; aspect-ratio: 4/3; background-color: #eee; border-radius: 8px;">
+        <div class="loader" id="loaderSport"></div>
+        <img id="imgSport" src="data:image/png;base64," alt="UI Menu Sport (Interfaccia)" style="opacity:0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;">
+        <div class="gallery-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;"><i class="fas fa-search-plus" style="font-size: 2rem; color: white;"></i></div>
+      </div>
+      <div class="gallery-item" style="position: relative; overflow: hidden; aspect-ratio: 4/3; background-color: #eee; border-radius: 8px;">
+        <div class="loader" id="loaderEPG"></div>
+        <img id="imgEPG" src="data:image/png;base64," alt="UI Guida EPG (Guida TV)" style="opacity:0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;">
+        <div class="gallery-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;"><i class="fas fa-search-plus" style="font-size: 2rem; color: white;"></i></div>
+      </div>
+      <div class="gallery-item" style="position: relative; overflow: hidden; aspect-ratio: 4/3; background-color: #eee; border-radius: 8px;">
+        <div class="loader" id="loaderVOD"></div>
+        <img id="imgVOD" src="data:image/png;base64," alt="Logo Ufficiale Coppa del Mondo FIFA 2026" style="opacity:0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;">
+        <div class="gallery-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;"><i class="fas fa-search-plus" style="font-size: 2rem; color: white;"></i></div>
+      </div>
+      <div class="gallery-item" style="position: relative; overflow: hidden; aspect-ratio: 4/3; background-color: #eee; border-radius: 8px;">
+        <div class="loader" id="loaderLive"></div>
+        <img id="imgLive" src="data:image/png;base64," alt="Logo Ufficiale Coppa d'Africa 2025 Marocco" style="opacity:0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;">
+        <div class="gallery-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;"><i class="fas fa-search-plus" style="font-size: 2rem; color: white;"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq">
+    <h2 class="section-title reveal">DOMANDE FREQUENTI</h2>
+    <div class="faq-container reveal">
+      <div class="faq-item" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;">
+        <button class="faq-question" style="background: var(--light-bg); border: 1px solid var(--light-border); color: var(--dark-text); width: 100%; text-align: left; padding: 15px 20px; font-weight: 600; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s;">Su quali dispositivi funziona? <i class="fas fa-chevron-down" style="transition: transform 0.3s;"></i></button>
+        <div class="faq-answer" style="background: var(--page-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+          <p style="padding: 15px 20px; margin: 0; color: #333;">TifoZeria funziona su Smart TV (Samsung, LG, Android TV), Amazon Fire Stick, PC, Smartphone (iOS/Android) e decoder MAG/Enigma.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;">
+        <button class="faq-question" style="background: var(--light-bg); border: 1px solid var(--light-border); color: var(--dark-text); width: 100%; text-align: left; padding: 15px 20px; font-weight: 600; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s;">Serve una parabola? <i class="fas fa-chevron-down" style="transition: transform 0.3s;"></i></button>
+        <div class="faq-answer" style="background: var(--page-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+          <p style="padding: 15px 20px; margin: 0; color: #333;">No, serve solo una connessione internet. Consigliamo almeno 10-20 Mbps per la visione in HD/4K senza interruzioni.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;">
+        <button class="faq-question" style="background: var(--light-bg); border: 1px solid var(--light-border); color: var(--dark-text); width: 100%; text-align: left; padding: 15px 20px; font-weight: 600; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s;">Posso provare prima di acquistare? <i class="fas fa-chevron-down" style="transition: transform 0.3s;"></i></button>
+        <div class="faq-answer" style="background: var(--page-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+          <p style="padding: 15px 20px; margin: 0; color: #333;">Offriamo una garanzia "Soddisfatti o Rimborsati" entro 7 giorni dall'acquisto se riscontri problemi tecnici non risolvibili.</p>
+        </div>
+      </div>
+      <div class="faq-item" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;">
+        <button class="faq-question" style="background: var(--light-bg); border: 1px solid var(--light-border); color: var(--dark-text); width: 100%; text-align: left; padding: 15px 20px; font-weight: 600; font-size: 1.05rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s;">Come funziona il pagamento alla consegna? <i class="fas fa-chevron-down" style="transition: transform 0.3s;"></i></button>
+        <div class="faq-answer" style="background: var(--page-bg); max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+          <p style="padding: 15px 20px; margin: 0; color: #333;">Compila il modulo qui sotto. Un nostro operatore ti contatterà su WhatsApp per confermare i dati. Riceverai le credenziali e pagherai in modo sicuro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section class="section" id="order">
+    <div class="order-wrapper reveal" style="display: flex; gap: 40px; padding: 40px; border-radius: 12px;">
+      <div class="order-info" style="flex: 1; min-width: 300px;">
+        <h2 style="margin-top:0; color:var(--primary-red); font-size: 1.8rem; font-weight: 800;">PRONTO A ENTRARE IN CAMPO?</h2>
+        <p style="color:var(--dark-text);">Compila il modulo per bloccare il prezzo e ricevere attivazione prioritaria.</p>
+        <ul style="list-style:none; padding:0; margin-top:30px;">
+          <li style="margin-bottom:15px; color:var(--dark-text);"><i class="fas fa-lock" style="color:var(--primary-red); width:25px;"></i> Pagamento Sicuro o alla Consegna</li>
+          <li style="margin-bottom:15px; color:var(--dark-text);"><i class="fas fa-bolt" style="color:var(--primary-red); width:25px;"></i> Attivazione in 15 minuti</li>
+          <li style="margin-bottom:15px; color:var(--dark-text);"><i class="fas fa-shield-alt" style="color:var(--primary-red); width:25px;"></i> Privacy Garantita al 100%</li>
+        </ul>
+        <!-- NUOVO BLOCCO GEMINI -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--light-border);">
+            <p style="font-weight: 600;">Hai domande sul servizio o vuoi un'analisi sportiva in tempo reale?</p>
+            <button type="button" class="btn gemini-btn" onclick="openAnalyzerModal()" style="width:100%; border:none;">✨ Chiedi al Tifo Analyzer</button>
+        </div>
+        <!-- FINE NUOVO BLOCCO GEMINI -->
+      </div>
+      <div class="order-form-container" style="flex: 1; min-width: 300px;">
+        <form id="orderForm" style="display: flex; flex-direction: column; gap: 15px;">
+          <input type="text" placeholder="Nome e Cognome" required>
+          <input type="email" placeholder="Indirizzo Email" required>
+          <input type="tel" placeholder="Numero WhatsApp (Importante)" required>
+          <select id="planSelector">
+            <option value="Tifo Starter">Tifo Starter (49,99€ / 12 Mesi)</option>
+            <option value="Tifo Power" selected>Tifo Power (89,99€ / 48 Mesi) - Consigliato</option>
+            <option value="Tifo Tantom">Tifo Tantom (199,99€ / Illimitato)</option>
+          </select>
+          <textarea placeholder="Note o richieste specifiche (opzionale)" rows="3"></textarea>
+            <div style="font-size:0.8rem; color:var(--dark-grey); margin-top:5px;">
+            Cliccando "Conferma Ordine" accetti di essere contattato via WhatsApp per finalizzare l'attivazione.
+          </div>
+            <div id="orderError" style="color:#b00020; font-size:0.95rem; margin-top:8px; display:none;"></div>
+            <button type="submit" class="btn" style="width:100%; border:none;">CONFERMA ORDINE</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="section" style="padding-top: 20px; padding-bottom: 20px; text-align: center; margin: 0 auto;">
+        <img src="https://placehold.co/40x40/E60000/white?text=TF" style="border-radius:50%; margin-bottom:15px; border: 1px solid #ccc;" alt="Logo">
+        <p style="color:#666; font-size:0.9rem;">&copy; 2025 TIFOZERIA Italia. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/" class="whatsapp-float" target="_blank" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #25D366; color: white; border-radius: 50%; text-align: center; font-size: 24px; line-height: 60px; z-index: 100; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s;">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- MODALE: Tifo Analyzer -->
+  <div id="analyzerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAnalyzerModal()">&times;</span>
+      <h2 style="color:var(--gemini-green); font-weight: 800; margin-top: 0;"><i class="fas fa-magic"></i> Tifo Analyzer Assistant</h2>
+      <p style="color:var(--dark-grey);">Chiedi al nostro assistente AI qualsiasi cosa sui nostri piani o sulle ultime notizie sportive. (Esempio: "Quali sono i vantaggi del piano Tifo Power?" o "Chi ha vinto l'ultima partita della Serie A?").</p>
+      
+      <!-- L'input qui utilizza lo stesso stile dei campi del form -->
+      <textarea id="analyzerQueryInput" rows="4" placeholder="Inserisci qui la tua domanda..." style="width: 100%; margin-bottom: 10px;"></textarea>
+      
+      <button class="btn gemini-btn" id="analyzeButton" onclick="analyzeQuery()" style="width:100%; border:none; margin-bottom: 20px;">
+        <i class="fas fa-paper-plane"></i> Analizza e Rispondi
+      </button>
+
+      <div id="analyzerResponse">
+        <p style="text-align: center; color: var(--dark-grey);">La risposta dell'AI apparirà qui.</p>
+      </div>
+      <div id="analyzerSources" class="source-list" style="display:none;"></div>
+      <div class="gemini-branding">Powered by Gemini API</div>
+    </div>
+  </div>
+
+  <!-- Script JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

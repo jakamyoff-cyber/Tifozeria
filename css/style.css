@@ -1,0 +1,588 @@
+/* --- NUOVO TEMA --- */
+:root {
+  /* Colori Dettati dall'Utente */
+  --primary-red: #E60000; 
+  --dark-text: #1a1a1a; 
+  --light-bg: #ffffff; 
+  --page-bg: #f5f5f5; 
+  --light-border: #e0e0e0; 
+  --dark-grey: #666666; 
+  --price-box-bg: #f0f0f0; 
+  --button-hover: #CC0000; 
+  --gemini-green: #0F9D58; 
+  
+  /* ALTEZZA DELLA BARRA FISSA RIMASTA */
+  --vod-ticker-height: 40px; 
+  --nav-height: 70px; /* Altezza della barra di navigazione */
+}
+
+* { box-sizing: border-box; }
+
+body { 
+  margin: 0; 
+  padding-top: calc(var(--vod-ticker-height) + var(--nav-height)); /* Aggiunge padding per accogliere il Ticker e la Nav */
+  font-family: 'Inter', system-ui, Arial, sans-serif; 
+  background-color: var(--light-bg); 
+  color: var(--dark-text); 
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+html { scroll-behavior: smooth; }
+
+/* --- TICKET VOD (FISSO E IN CIMA) --- */
+.ticker-wrap-movie {
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    background: var(--primary-red); 
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 2px solid var(--dark-text);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    z-index: 2000; 
+    height: var(--vod-ticker-height); 
+    display: flex;
+    align-items: center;
+}
+
+.ticker-movie {
+    display: inline-block;
+    animation: scroll-right 40s linear infinite; 
+    padding-left: 100%; 
+}
+
+.ticker-movie-item {
+    color: white;
+    margin-right: 40px; 
+    display: inline-block;
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
+
+/* --- NUOVA BARRA DI NAVIGAZIONE FISSA --- */
+#mainNav {
+    position: fixed; 
+    top: var(--vod-ticker-height); /* Posizionato sotto il ticker */
+    left: 0; 
+    width: 100%; 
+    height: var(--nav-height); 
+    padding: 0 40px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1500; 
+    background: transparent; /* Inizialmente trasparente sopra l'Hero */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#mainNav.scrolled {
+    background: rgba(255, 255, 255, 0.95); /* Diventa semitrasparente/bianco allo scroll */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo-container { display: flex; align-items: center; gap: 12px; }
+.logo-text { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; color: var(--primary-red); text-transform: uppercase; }
+
+/* Stile per i link di navigazione */
+.nav-links {
+    display: flex; 
+    gap: 30px; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    align-items: center;
+}
+.nav-links a {
+    color: white; /* Testo bianco sull'Hero trasparente */
+    font-weight: 600; 
+    text-decoration: none; 
+    transition: color 0.3s; 
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Regola i colori quando il menu è scrollato (fondo bianco) */
+#mainNav.scrolled .nav-links a {
+    color: var(--dark-text); 
+}
+
+/* Effetto Hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-red);
+    transition: width 0.3s ease-out;
+}
+
+.nav-links a:hover {
+    color: var(--primary-red); /* Il testo diventa rosso al hover */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* La sottolineatura si espande */
+}
+
+/* Stile per il pulsante CTA nel menu (rimane invariato) */
+.action-cta {
+  background: var(--primary-red); border: 1px solid var(--primary-red); color: white;
+  padding: 8px 18px; border-radius: 6px; font-weight: 700; text-decoration: none; transition: 0.3s;
+  font-size: 0.8rem; text-transform: uppercase;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  margin-left: 20px;
+}
+.action-cta:hover { background: var(--button-hover); border-color: var(--button-hover); box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3); }
+
+/* Icona Hamburger (visibile solo su mobile) */
+#menuToggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+    z-index: 1501;
+}
+#mainNav.scrolled #menuToggle {
+    color: var(--dark-text); /* Colore scuro quando scrollato */
+}
+
+
+/* --- ANIMAZIONI e EFFETTI VISIVI --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.loader {
+    border: 4px solid var(--price-box-bg);
+    border-top: 4px solid var(--primary-red);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #333; 
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+.hero-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, var(--light-bg) 100%);
+  z-index: 1;
+}
+.hero-content {
+    position: relative; z-index: 2;
+    padding: 0 40px;
+    height: 100%;
+    /* Aggiungo padding in alto per non nascondere il testo sotto la nav */
+    padding-top: calc(var(--vod-ticker-height) + var(--nav-height) + 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.hero-content h1 { 
+  color: white; 
+  font-size: 3.5rem; 
+  font-weight: 900; 
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+  line-height: 1.1;
+}
+.hero-content h2 {
+    color: #ddd;
+    font-size: 1.4rem;
+    margin-top: 0;
+    font-weight: 400;
+}
+
+/* Bottone CTA (Rosso Vivo) */
+.btn {
+  background: var(--primary-red); color: white;
+  padding: 16px 32px; border-radius: 8px;
+  font-weight: 700; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: all 0.3s;
+}
+.btn:hover { background: var(--button-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(230, 0, 0, 0.3); }
+.btn.outline { 
+    background: transparent; 
+    border: 2px solid var(--primary-red); 
+    color: var(--primary-red); 
+    box-shadow: none;
+}
+.btn.outline:hover { 
+    background: var(--primary-red); 
+    color: white; 
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 20px rgba(230, 0, 0, 0.3);
+}
+.btn.gemini-btn {
+    background: var(--gemini-green);
+    border-color: var(--gemini-green);
+    color: white;
+}
+.btn.gemini-btn:hover {
+    background: #0c8046;
+    border-color: #0c8046;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(15, 157, 88, 0.3);
+}
+
+/* --- SECTIONS COMMON --- */
+.section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+.section-title { 
+    color: var(--dark-text); 
+    font-size: 2.5rem; 
+    font-weight: 800; 
+    text-align: center; 
+    margin-bottom: 50px; 
+    position: relative; 
+    text-transform: uppercase;
+    color: var(--primary-red); 
+}
+.section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--dark-text); margin: 10px auto 0; border-radius: 2px; }
+
+/* --- PLANS SECTION (ZOOM HOVER) --- */
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
+.plan-box {
+  background: var(--light-bg); 
+  border-radius: 12px; 
+  border: 1px solid var(--light-border); 
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; 
+  display: flex; 
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  text-align: left; 
+  position: relative;
+}
+
+.plan-box:hover { 
+    border-color: var(--primary-red); 
+    box-shadow: 0 12px 30px rgba(230, 0, 0, 0.2); 
+    transform: scale(1.02); 
+    z-index: 10; 
+}
+
+.plan-box.badge-visible .plan-header {
+    padding-top: 15px;
+}
+
+/* Stili interni dei piani (Invariati) */
+.plan-badge-top { 
+    padding: 8px 25px; 
+    font-weight: 700; 
+    font-size: 0.85rem; 
+    color: white; 
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.plan-box:not(.badge-visible) .plan-badge-top { 
+    display: none; 
+}
+
+.plan-header { 
+    padding: 25px; 
+    padding-top: 25px; 
+    text-align: left; 
+}
+
+.plan-header h3 { 
+    font-size: 2.0rem;
+    margin: 0; 
+    color: var(--dark-text); 
+    font-weight: 800; 
+    line-height: 1.2;
+}
+.plan-price-line {
+    display: block; 
+    margin-top: 5px;
+    font-size: 1.2rem; 
+    font-weight: 600; 
+    color: var(--dark-text); 
+}
+.plan-price-line span { 
+    font-size: 0.9rem; 
+    color: var(--dark-grey); 
+    font-weight: 400; 
+}
+
+.plan-description { 
+    color: var(--dark-grey); 
+    margin: 5px 0 20px 0; 
+    font-size: 0.95rem; 
+    display: block;
+}
+
+.client-price-box { 
+    background-color: var(--price-box-bg); 
+    padding: 15px 25px; 
+    font-size: 1rem; 
+    color: var(--dark-text); 
+    font-weight: 600; 
+    text-align: left; 
+}
+
+.plan-features { 
+    padding: 25px; 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+.plan-features ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+.plan-features li { 
+    margin-bottom: 12px; 
+    color: var(--dark-text); 
+    font-size: 0.95rem; 
+    align-items: center; 
+    line-height: 1.4; 
+    display: flex; 
+    gap: 10px; 
+    font-weight: 400; 
+}
+.plan-features li i { 
+    color: var(--primary-red);
+    font-size: 1rem; 
+    min-width: 15px; 
+}
+
+.plan-footer { 
+    padding: 25px; 
+    margin-top: auto; 
+    text-align: center; 
+    background: var(--light-bg); 
+}
+.plan-details-link { 
+    color: var(--primary-red); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    display: block; 
+    margin-bottom: 25px; 
+    transition: color 0.3s; 
+    text-align: center;
+}
+
+.btn-plan { 
+    width: 100%; 
+    padding: 16px; 
+    border-radius: 8px; 
+    font-weight: 700; 
+    font-size: 1rem; 
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, color 0.3s; 
+    text-transform: uppercase;
+}
+
+.btn-plan.light-cta { 
+    background: var(--light-bg); 
+    color: var(--dark-text); 
+    border: 2px solid var(--dark-text); 
+}
+.btn-plan.light-cta:hover { 
+    background: var(--dark-text); 
+    color: white; 
+}
+
+.btn-plan.featured-cta { 
+    background: var(--primary-red); 
+    color: white; 
+    border: 2px solid var(--primary-red); 
+}
+.btn-plan.featured-cta:hover { 
+    background: var(--button-hover); 
+    border-color: var(--button-hover);
+}
+
+/* --- STILE CAMPI FORM E ANALYZER INPUT --- */
+.order-form-container input[type="text"], 
+.order-form-container input[type="email"], 
+.order-form-container input[type="tel"], 
+.order-form-container select, 
+.order-form-container textarea,
+#analyzerQueryInput 
+{
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px; 
+    border: 2px solid var(--light-border); 
+    background-color: var(--page-bg); 
+    color: var(--dark-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none; 
+}
+
+.order-form-container input:focus, 
+.order-form-container select:focus, 
+.order-form-container textarea:focus,
+#analyzerQueryInput:focus
+{
+    border-color: var(--primary-red); 
+    box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.2); 
+    background-color: var(--light-bg); 
+}
+
+/* Stile specifico per il testo nell'Analyzer input */
+#analyzerQueryInput {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- MODALE --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--light-bg);
+    margin: 5% auto; 
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%; 
+    max-width: 700px;
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close-btn {
+    color: var(--dark-text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--primary-red);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#analyzerResponse {
+    background: var(--page-bg);
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    text-align: left;
+    border: 1px solid var(--light-border);
+    position: relative;
+}
+
+.source-list {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 0.85rem;
+    color: var(--dark-grey);
+}
+.source-list a {
+    color: var(--gemini-green);
+    text-decoration: none;
+}
+.source-list a:hover {
+    text-decoration: underline;
+}
+.gemini-branding {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gemini-green);
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  /* Rimuovi il padding dal body che compensava la nav desktop */
+  body { padding-top: var(--vod-ticker-height); } 
+  
+  .plans { grid-template-columns: 1fr; gap: 40px; }
+  .advantages { grid-template-columns: repeat(2, 1fr); }
+  .order-wrapper { flex-direction: column; }
+  h1 { font-size: 2.5rem; }
+  .modal-content { margin: 20% auto; }
+  
+  /* Navigazione Mobile */
+  #mainNav { padding: 0 20px; height: var(--nav-height); }
+  .logo-text { font-size: 1.2rem; }
+  .action-cta { display: none; /* Nascondi CTA fissa per dare spazio all'hamburger */ } 
+  #menuToggle { display: block; } /* Mostra pulsante hamburger */
+  
+  .nav-links {
+      display: none; /* Nascondi i link per default */
+      flex-direction: column;
+      position: absolute;
+      top: var(--nav-height); 
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98); 
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      padding: 20px 0;
+  }
+  .nav-links.open { display: flex; } /* Mostra quando aperto */
+  .nav-links li { width: 100%; text-align: center; margin: 10px 0; }
+  .nav-links a { 
+      color: var(--dark-text); /* Colore scuro nel menu mobile */
+      display: block;
+      font-size: 1.1rem;
+  }
+  .nav-links a:hover { 
+      color: var(--primary-red); 
+  }
+  .nav-links a::after { display: none; } /* Rimuovi l'animazione hover dal mobile */
+  
+  /* Correzione Hero Content Padding (perché il body padding è stato rimosso) */
+  .hero-content { 
+      padding-top: calc(var(--vod-ticker-height) + var(--nav-height) + 20px); 
+      padding-bottom: 40px; 
+      height: auto; 
+      min-height: 80vh; 
+  }
+  .hero-content h1 { font-size: 2.8rem; }
+}
